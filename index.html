@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>YOKYOKYOK</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+  <div class="container-sm contcolor">
+    <h1 class="myh2">HOY VIRA!</h1>
+  </div>
+  <div class="container-sm contcolor">
+    <img class="catimg" src="./images/giphy.gif" alt="cutecat">
+  </div>
+  <div class="container-sm contcolor">
+    <h1 class="myh2">Jalan yokkkk!</h1>
+  </div>
+
+  <div class="container-sm">
+    <button type="button" class="btn btn-outline-success mybtn">AYOKK</button>
+    <button id="movingButton" class="btn btn-outline-danger mybtn">Gamau
+      Ah</button>
+  </div>
+
+  <script>
+    const movingButton = document.getElementById('movingButton');
+
+    movingButton.addEventListener('click', () => {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      const buttonWidth = movingButton.offsetWidth;
+      const buttonHeight = movingButton.offsetHeight;
+
+      // Reduce the maximum X and Y values to keep the button within frame
+      const maxX = screenWidth - buttonWidth - 10;
+      const maxY = screenHeight - buttonHeight - 10;
+
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      // Set the new button position
+      movingButton.style.left = `${randomX}px`;
+      movingButton.style.top = `${randomY}px`;
+    });
+
+    // Update button position when the device orientation changes
+    window.addEventListener("orientationchange", () => {
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      const buttonWidth = movingButton.offsetWidth;
+      const buttonHeight = movingButton.offsetHeight;
+
+      const maxX = screenWidth - buttonWidth - 10;
+      const maxY = screenHeight - buttonHeight - 10;
+
+      const currentX = parseInt(movingButton.style.left, 10);
+      const currentY = parseInt(movingButton.style.top, 10);
+
+      // Check if the button is out of frame and readjust if necessary
+      if (currentX > maxX) {
+        movingButton.style.left = `${maxX}px`;
+      }
+      if (currentY > maxY) {
+        movingButton.style.top = `${maxY}px`;
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
